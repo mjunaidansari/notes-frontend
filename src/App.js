@@ -143,7 +143,7 @@ const App = () => {
             }
             {user && 
                 <>
-                    <p>{user.name} is logged in</p>
+                    <p>{user.name} logged in</p>
                     {noteForm()}
                  </>
             }
