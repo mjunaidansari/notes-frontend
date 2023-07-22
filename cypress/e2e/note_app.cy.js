@@ -7,6 +7,17 @@
 describe('Note app', function() {
 
   beforeEach(function() {
+
+    // to reset the testing db
+    cy.request('POST', 'http://localhost:3000/api/testing/reset')
+    
+    const user = {
+      name: 'Junaid Ansari',
+      username: 'junaid',
+      password: 'hehe'
+    }
+    cy.request('POST', 'http://localhost:3000/api/users', user)
+
     cy.visit('http://localhost:3000')
   })
 
@@ -39,6 +50,33 @@ describe('Note app', function() {
       cy.contains('a note created by cypress')
     })
 
+    describe('and a note exists', function() {
+
+      beforeEach(function() {
+        cy.contains('New Note').click()
+        cy.get('#note-input').type('another note cypress')
+        cy.contains('Save').click()
+      })
+
+      it.only('it can be made not important', function() {
+        cy.contains('another note cypress')
+          .contains('make not important')
+          .click()
+        cy.contains('another note cypress')
+          .contains('make important')
+      })
+
+    })
+
+  })
+
+  it.only('login fails with wrong password', function() {
+    cy.contains('Login').click()
+    cy.get('#username').type('junaid')
+    cy.get('#password').type('wrong')
+    cy.get('#login-button').click()
+
+    cy.contains('Wrong Credentials')
   })
 
 })
