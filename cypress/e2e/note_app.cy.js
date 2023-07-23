@@ -76,7 +76,13 @@ describe('Note app', function() {
     cy.get('#password').type('wrong')
     cy.get('#login-button').click()
 
-    cy.contains('Wrong Credentials')
+    // cy.get('.error').contains('Wrong Credentials')
+    cy.get('.error')
+      .should('contain', 'Wrong Credentials')
+      .should('have.css', 'color', 'rgb(255, 0, 0)')
+      .should('have.css', 'border-style', 'solid')
+
+    cy.get('html').should('not.contain', 'Junaid Ansari logged in')
   })
 
 })
