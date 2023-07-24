@@ -1,9 +1,3 @@
-// describe('template spec', () => {
-//   it('passes', () => {
-//     cy.visit('https://example.cypress.io')
-//   })
-// })
-
 describe('Note app', function() {
 
   beforeEach(function() {
@@ -65,13 +59,10 @@ describe('Note app', function() {
     describe('and a note exists', function() {
 
       beforeEach(function() {
-        // cy.createNote({
-        //   content: 'another note cypress',
-        //   important: true
-        // })
-        cy.contains('New Note').click()
-        cy.get('#note-input').type('another note cypress')
-        cy.contains('Save').click()
+        cy.createNote({
+          content: 'another note cypress',
+          important: true
+        })
       })
 
       it('it can be made not important', function() {
@@ -80,6 +71,31 @@ describe('Note app', function() {
           .click()
         cy.contains('another note cypress')
           .contains('make important')
+      })
+
+    })
+
+    describe('and several notes exist', function() {
+
+      beforeEach(function(){
+
+        cy.createNote({content: 'first note', important: false})
+        cy.createNote({content: 'second note', important: false})
+        cy.createNote({content: 'third note', important: false})
+
+      })
+
+      it('one of those can be made important', function() {
+
+        cy
+          .contains('second note')
+          .contains('make important')
+          .click()
+
+        cy
+          .contains('second note')
+          .contains('make not important')
+
       })
 
     })

@@ -30,20 +30,23 @@ Cypress.Commands.add('login', ({username, password}) => {
     }).then(response => {
       localStorage.setItem('loggedNoteappUser', JSON.stringify(response.body))
       cy.visit('')
+      cy.log(JSON.stringify(window.localStorage.getItem('loggedNoteappUser')).token)
+      cy.log(window.localStorage.getItem('loggedNoteappUser'))
     })
 })
 
 Cypress.Commands.add('createNote', ({content, important}) => {
 
+    const authorization = `Bearer ${JSON.parse(window.localStorage.getItem('loggedNoteappUser')).token}`
+    cy.log(authorization)
     cy.request({
         url: 'http://localhost:3001/api/notes',
         method: 'POST',
         body: {content, important},
         headers: {
-            'Auhtorization': `Bearer ${JSON.parse(localStorage.getItem('loggedNoteappUser')).token}`
+            Authorization: authorization
         }
     })
-    console.log(localStorage.getItem('loggedNoteappUser'))
     cy.visit('')
 
 })
