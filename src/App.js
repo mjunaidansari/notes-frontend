@@ -4,12 +4,16 @@ import Note from './components/Note'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
+import Home from './components/Home'
+import Notes from './components/Notes'
 
 import noteService from './services/notes'
 import loginServices from './services/login'
 
-import styles from './index'
 import NoteForm from './components/NoteForm'
+
+/* REACT ROUTER */
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 
 const App = () => {
 
@@ -125,8 +129,39 @@ const App = () => {
         )
     }
 
+	/* STYLE OBJECTS */
+
+	const padding = {
+		padding: 5
+	}
+
     return (
-        <div>
+        <Router>
+
+			<div>
+				<Link style={padding} to="/">Home</Link>
+				<Link style={padding} to="/notes">Notes</Link>
+				<Link style={padding} to="/users">Users</Link>
+				<Link style={padding} to="/login">Login</Link>
+			</div>
+
+			<Routes>
+				<Route path = "/" element = {<Home/>}/>
+				<Route path = "/notes" element = {<Notes
+														notes = {notes}
+														toggleImportanceOf = {toggleImportanceOf}
+													/>}/>
+				<Route path = "/login" element = {
+					<LoginForm
+						username = {username}
+						password = {password}
+						handleUsernameChange = { ({ target }) => setUsername(target.value)}
+						handlePasswordChange = { ({ target }) => setPassword(target.value)}
+						handleLogin = {handleLogin}
+					/>
+				} />
+			</Routes>
+
             <h1>Notes</h1>
             <Notification message = {errorMessage} />
 
@@ -165,7 +200,7 @@ const App = () => {
             </ul>
             
             
-        </div>
+        </Router>
     )
 
 }
