@@ -1,17 +1,66 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+// import './index.css';
+// import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import React, {useState} from "react"
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+
+const Home = () => {
+	return (
+		<div><h1>Notes App</h1></div>
+	)
+}
+
+const Notes = () => {
+	return (
+		<div><h1>Notes</h1></div>
+	)
+}
+
+const Users = () => {
+	return (
+		<div><h1>Users</h1></div>
+	)
+}
+
+const App = () => {
+
+	const padding = {
+		padding: 5
+	}
+
+	return (
+		<Router>
+
+			<div>
+				<Link style={padding} to="/">Home</Link>
+				<Link style={padding} to="/notes">Notes</Link>
+				<Link style={padding} to="/users">Users</Link>
+			</div>
+
+			<Routes>
+				<Route path="/notes" element = {<Notes/>} />
+				<Route path="/users" element = {<Users/>} />
+				<Route path="/" element = {<Home/>} />
+			</Routes>
+
+			<div>
+				<i>Note App, dept of Computer Science</i>
+			</div>
+
+		</Router>
+	)
+
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App/>)
