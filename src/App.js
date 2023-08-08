@@ -12,6 +12,8 @@ import loginServices from './services/login'
 
 import NoteForm from './components/NoteForm'
 
+import { useNavigate } from 'react-router-dom'
+
 /* REACT ROUTER */
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 
@@ -27,7 +29,7 @@ const App = () => {
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
 
-    const [loginVisible, setLoginVisible] = useState(false)
+	const navigate = useNavigate()
 
     /** USEREF HOOKS */
 
@@ -108,6 +110,7 @@ const App = () => {
             setUser(user)
             setUsername('')
             setPassword('')
+			navigate('/')
         } catch(exception) {
             setErrorMessage('Wrong Credentials')
             setTimeout(() => {
@@ -142,7 +145,10 @@ const App = () => {
 				<Link style={padding} to="/">Home</Link>
 				<Link style={padding} to="/notes">Notes</Link>
 				<Link style={padding} to="/users">Users</Link>
-				<Link style={padding} to="/login">Login</Link>
+				{user
+					?<em>{user.name} logged in</em>
+					:<Link style={padding} to='/login'>Login</Link>	
+				}
 			</div>
 
 			<Routes>

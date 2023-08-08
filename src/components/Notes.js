@@ -1,12 +1,13 @@
 import React, {useState} from "react"
 
-import Togglable from "./Togglable"
 import Note from "./Note"
+
+import { useNavigate } from "react-router-dom"
 
 const Notes = (props) => {
 
 	const notes = props.notes
-	
+
     const [showAll, setShowAll] = useState(true)
 
 	const notesToShow = showAll? notes : notes.filter(note => note.important === true)
