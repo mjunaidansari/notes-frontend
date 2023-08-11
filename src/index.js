@@ -1,66 +1,63 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+// import React, {useState} from 'react';
+// import ReactDOM from 'react-dom/client';
+// import './index.css';
+// import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <App />
+// );
 
-// import React, {useState} from "react"
-// import ReactDOM from 'react-dom/client'
-// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+/** UNCOMMMENT BELOW CODE FOR CUSTOM HOOKS */
 
-// const Home = () => {
-// 	return (
-// 		<div><h1>Notes App</h1></div>
-// 	)
-// }
+import React, {useState} from "react"
+import ReactDOM from "react-dom/client"
 
-// const Notes = () => {
-// 	return (
-// 		<div><h1>Notes</h1></div>
-// 	)
-// }
+const useCounter = () => {
 
-// const Users = () => {
-// 	return (
-// 		<div><h1>Users</h1></div>
-// 	)
-// }
+	const [value, setValue] = useState(0)
 
-// const App = () => {
+	const increase = () => {
+		setValue(value + 1)
+	}
 
-// 	const padding = {
-// 		padding: 5
-// 	}
+	const decrease = () => {
+		setValue(value - 1)
+	}
+	
+	const zero = () => {
+		setValue(0)
+	}
 
-// 	return (
-// 		<Router>
+	return {
+		value,
+		increase,
+		decrease,
+		zero
+	}
 
-// 			<div>
-// 				<Link style={padding} to="/">Home</Link>
-// 				<Link style={padding} to="/notes">Notes</Link>
-// 				<Link style={padding} to="/users">Users</Link>
-// 			</div>
+}
 
-// 			<Routes>
-// 				<Route path="/notes" element = {<Notes/>} />
-// 				<Route path="/users" element = {<Users/>} />
-// 				<Route path="/" element = {<Home/>} />
-// 			</Routes>
+const App = () => {
 
-// 			<div>
-// 				<i>Note App, dept of Computer Science</i>
-// 			</div>
+	const counter = useCounter()
 
-// 		</Router>
-// 	)
+	return (
+		<div>
+			<div>{counter.value}</div>
+			<button onClick={counter.increase}>
+				Plus
+			</button>
+			<button onClick={counter.increase}>
+				Zero
+			</button>
+			<button onClick={counter.increase}>
+				Minus
+			</button>
+		</div>
+	)
 
-// }
+}
 
-// const root = ReactDOM.createRoot(document.getElementById('root'))
-// root.render(<App/>)
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App/>)

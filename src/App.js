@@ -1,18 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import Note from './components/Note'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
-import Togglable from './components/Togglable'
 import Home from './components/Home'
 import Notes from './components/Notes'
 
 import noteService from './services/notes'
-import loginServices from './services/login'
-
-import NoteForm from './components/NoteForm'
-
-import { useNavigate } from 'react-router-dom'
 
 /* REACT ROUTER */
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
