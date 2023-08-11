@@ -1,16 +1,21 @@
 import React, {useState} from "react"
 import PropTypes from 'prop-types'
 
-import { useNavigate } from "react-router-dom"
+import { useFetcher, useNavigate } from "react-router-dom"
 
 import loginServices from '../services/login'
 import noteService from '../services/notes'
+
+import useField from "../hooks/hooks"
 
 
 const LoginForm = (props) => {
 
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+
+	// const username = useField('text')
+	// const password = useField('password')
 
 	const {setUser, setErrorMessage} = props
 
@@ -39,7 +44,6 @@ const LoginForm = (props) => {
         }
 	}
 
-    // const {handleLogin, handleUsernameChange, handlePasswordChange, username, password} = props
     return (
     <form onSubmit={handleLogin}>
         <div>
@@ -49,8 +53,7 @@ const LoginForm = (props) => {
             type = 'text'
             value = {username}
             name = 'Username'
-            onChange = { ({ target }) => setUsername(target.value) }
-            // onChange = {handleUsernameChange}
+            onChange = {({ target }) => setUsername(target.value)}
             />
         </div>
         <div>
@@ -60,8 +63,7 @@ const LoginForm = (props) => {
             type = 'password'
             value = {password}
             name = 'Password'
-            onChange={ ({ target }) => setPassword(target.value) }
-            // onChange={handlePasswordChange}
+            onChange={({ target }) => setPassword(target.value)}
             />
         </div>
         <button id='login-button' type='submit'>Login</button>

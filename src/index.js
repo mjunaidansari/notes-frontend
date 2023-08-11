@@ -1,63 +1,63 @@
-// import React, {useState} from 'react';
-// import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
+import React, {useState} from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//     <App />
-// );
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <App />
+);
 
-/** UNCOMMMENT BELOW CODE FOR CUSTOM HOOKS */
+/** UNCOMMMENT BELOW CODE FOR SIMPLE CUSTOM HOOK */
 
-import React, {useState} from "react"
-import ReactDOM from "react-dom/client"
+// import React, {useState} from "react"
+// import ReactDOM from "react-dom/client"
 
-const useCounter = () => {
+// const useCounter = () => {
 
-	const [value, setValue] = useState(0)
+// 	const [value, setValue] = useState(0)
 
-	const increase = () => {
-		setValue(value + 1)
-	}
+// 	const increase = () => {
+// 		setValue(value + 1)
+// 	}
 
-	const decrease = () => {
-		setValue(value - 1)
-	}
+// 	const decrease = () => {
+// 		setValue(value - 1)
+// 	}
 	
-	const zero = () => {
-		setValue(0)
-	}
+// 	const zero = () => {
+// 		setValue(0)
+// 	}
 
-	return {
-		value,
-		increase,
-		decrease,
-		zero
-	}
+// 	return {
+// 		value,
+// 		increase,
+// 		decrease,
+// 		zero
+// 	}
 
-}
+// }
 
-const App = () => {
+// const App = () => {
 
-	const counter = useCounter()
+// 	const counter = useCounter()
 
-	return (
-		<div>
-			<div>{counter.value}</div>
-			<button onClick={counter.increase}>
-				Plus
-			</button>
-			<button onClick={counter.increase}>
-				Zero
-			</button>
-			<button onClick={counter.increase}>
-				Minus
-			</button>
-		</div>
-	)
+// 	return (
+// 		<div>
+// 			<div>{counter.value}</div>
+// 			<button onClick={counter.increase}>
+// 				Plus
+// 			</button>
+// 			<button onClick={counter.increase}>
+// 				Zero
+// 			</button>
+// 			<button onClick={counter.increase}>
+// 				Minus
+// 			</button>
+// 		</div>
+// 	)
 
-}
+// }
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App/>)
+// const root = ReactDOM.createRoot(document.getElementById('root'))
+// root.render(<App/>)
