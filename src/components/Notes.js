@@ -6,7 +6,7 @@ import NoteForm from "./NoteForm"
 
 import noteService from '../services/notes'
 
-import { useNavigate } from "react-router-dom"
+import { Table } from "react-bootstrap"
 
 const Notes = (props) => {
 
@@ -73,6 +73,21 @@ const Notes = (props) => {
 					show {showAll? 'important' : 'all'}
 				</button>
 			</div>
+
+			<Table striped>
+				<tbody>
+					{notesToShow.map(note => 
+						<tr key = {note.id}>
+							<td>
+								{note.content}
+							</td>
+							<td>
+								{note.user}
+							</td>
+						</tr>
+					)}
+				</tbody>
+			</Table>
 
 			<ul>
 				{notesToShow.map(note => 

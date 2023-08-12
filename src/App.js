@@ -56,6 +56,7 @@ const App = () => {
 	}
 
     return (
+		<div className = 'container'>
         <Router>
 
 		<Notification message = {errorMessage} />
@@ -87,6 +88,7 @@ const App = () => {
 			</Routes>
             
         </Router>
+		</div>
     )
 
 }
