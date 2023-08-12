@@ -6,7 +6,7 @@ import { useFetcher, useNavigate } from "react-router-dom"
 import loginServices from '../services/login'
 import noteService from '../services/notes'
 
-import useField from "../hooks/hooks"
+import { Form, Button } from "react-bootstrap"
 
 
 const LoginForm = (props) => {
@@ -45,29 +45,52 @@ const LoginForm = (props) => {
 	}
 
     return (
-    <form onSubmit={handleLogin}>
-        <div>
-            username: 
-            <input 
-            id = 'username'
-            type = 'text'
-            value = {username}
-            name = 'Username'
-            onChange = {({ target }) => setUsername(target.value)}
-            />
-        </div>
-        <div>
-            password: 
-            <input
-            id = 'password'
-            type = 'password'
-            value = {password}
-            name = 'Password'
-            onChange={({ target }) => setPassword(target.value)}
-            />
-        </div>
-        <button id='login-button' type='submit'>Login</button>
-    </form>)
+	<>
+		<h2>Login</h2>
+		<Form onSubmit={handleLogin}>
+			<Form.Group>
+				<Form.Label>Username:</Form.Label>
+				<Form.Control
+					id = 'username'
+					type = 'text'
+					name = 'username'
+					value={username}
+					onChange = {({ target }) => setUsername(target.value)}
+				/>
+				<Form.Label>Password:</Form.Label>
+				<Form.Control
+					id = 'password'
+					type = 'password'
+					name = 'password'
+					value={password}
+					onChange = {({ target }) => setPassword(target.value)}
+				/>
+			</Form.Group>
+			<Button id="login-button" variant="primary" type="submit">Login</Button>
+			{/* <div>
+				username: 
+				<input 
+				id = 'username'
+				type = 'text'
+				value = {username}
+				name = 'Username'
+				onChange = {({ target }) => setUsername(target.value)}
+				/>
+			</div>
+			<div>
+				password: 
+				<input
+				id = 'password'
+				type = 'password'
+				value = {password}
+				name = 'Password'
+				onChange={({ target }) => setPassword(target.value)}
+				/>
+			</div>
+			<button id='login-button' type='submit'>Login</button> */}
+		</Form>
+	</>
+	)
 }
 
 // LoginForm.propTypes = {

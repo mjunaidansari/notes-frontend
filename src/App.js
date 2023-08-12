@@ -28,6 +28,7 @@ const App = () => {
             .then(response => {
                 console.log('promise fulfilled')
                 setNotes(response.data)
+				console.log(response.data)
             })
     }, [])
 
