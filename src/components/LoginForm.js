@@ -35,6 +35,7 @@ const LoginForm = (props) => {
             setUser(user)
             setUsername('')
             setPassword('')
+			props.setNotification(`Welcome ${user.name}`)
 			navigate('/')
         } catch(exception) {
             setErrorMessage('Wrong Credentials')

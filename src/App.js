@@ -9,6 +9,7 @@ import noteService from './services/notes'
 
 /* REACT ROUTER */
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { Alert } from 'react-bootstrap'
 
 const App = () => {
 
@@ -50,6 +51,15 @@ const App = () => {
 
 	}
 
+	const setNotification = (message) => {
+
+		setErrorMessage(message)
+		setTimeout(() => {
+			setErrorMessage(null)
+		}, 10000)
+
+	}
+
 	/* STYLE OBJECTS */
 
 	const padding = {
@@ -60,7 +70,12 @@ const App = () => {
 		<div className = 'container'>
         <Router>
 
-		<Notification message = {errorMessage} />
+		{/* <Notification message = {errorMessage} /> */}
+		{(errorMessage &&
+			<Alert variant='success'>
+				{errorMessage}
+			</Alert>	
+		)}
 
 			<div>
 				<Link style={padding} to="/">Home</Link>
@@ -84,6 +99,7 @@ const App = () => {
 					<LoginForm
 						setUser = {setUser}
 						setErrorMessage = {setErrorMessage}
+						setNotification = {setNotification}
 					/>
 				} />
 			</Routes>
