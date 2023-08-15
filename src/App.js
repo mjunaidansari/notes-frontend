@@ -9,7 +9,7 @@ import noteService from './services/notes'
 
 /* REACT ROUTER */
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import { Alert } from 'react-bootstrap'
+import { Alert, Nav, Navbar, NavbarBrand } from 'react-bootstrap'
 
 const App = () => {
 
@@ -77,7 +77,7 @@ const App = () => {
 			</Alert>	
 		)}
 
-			<div>
+			{/* <div>
 				<Link style={padding} to="/">Home</Link>
 				<Link style={padding} to="/notes">Notes</Link>
 				<Link style={padding} to="/users">Users</Link>
@@ -85,7 +85,30 @@ const App = () => {
 					?<><em>{user.name} logged in </em><button onClick={handleLogout}>Logout</button></>
 					:<Link style={padding} to='/login'>Login</Link>	
 				}
-			</div>
+			</div> */}
+
+			<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+				<Navbar.Toggle aria-controls='responsive-navbar-nav' />
+				<Navbar.Collapse id='reponsive-navbar-nav'>
+					<Nav className='me-auto'>
+						<Nav.Link href='#' as='span'>
+							<Link style={padding} to="/">Home</Link>
+						</Nav.Link>
+						<Nav.Link href='#' as='span'>
+							<Link style={padding} to="/notes">Notes</Link>
+						</Nav.Link>
+						<Nav.Link href='#' as='span'>
+							<Link style={padding} to="/users">Users</Link>
+						</Nav.Link>
+						<Nav.Link href='#' as='span'>
+							{user
+								?<><em>{user.name} logged in </em><button onClick={handleLogout}>Logout</button></>
+								:<Link style={padding} to='/login'>Login</Link>	
+							}
+						</Nav.Link>
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
 
 			<Routes>
 				<Route path = "/" element = {<Home/>}/>
